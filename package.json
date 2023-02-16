@@ -1,5 +1,5 @@
 {
-  "name": "ble",
+  "name": "com.plugin.ble",
   "version": "1.0.0",
   "description": "BLE蓝牙广播",
   "main": "index.js",
