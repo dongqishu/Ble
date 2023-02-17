@@ -79,9 +79,9 @@ public class Ble extends CordovaPlugin {
 //            byte txPower = (byte) -0x3b;
 
             UUID BLE_ADV_SERVICE = UUID.fromString(args.getString(0));
-            short major = Short.parseShort(args.getString(1));
-            short minor = Short.parseShort(args.getString(2));
-            byte txPower = Byte.parseByte(args.getString(3));
+            short major = (short)Integer.parseInt(args.getString(1));
+            short minor = (short)Integer.parseInt(args.getString(2));
+            byte txPower = -0x3b;
 
             // 广播数据
             AdvertiseData mAdvertiseData = createIBeaconAdvertiseData(BLE_ADV_SERVICE, major, minor, txPower);
