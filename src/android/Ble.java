@@ -79,9 +79,9 @@ public class Ble extends CordovaPlugin {
 //            byte txPower = (byte) -0x3b;
 
             UUID BLE_ADV_SERVICE = UUID.fromString(args.getString(0));
-            short major = (short) args.get(1);
-            short minor = (short) args.get(2);
-            byte txPower = (byte) args.get(3);
+            short major = Short.parseShort(args.getString(1));
+            short minor = Short.parseShort(args.getString(2));
+            byte txPower = Byte.parseByte(args.getString(3));
 
             // 广播数据
             AdvertiseData mAdvertiseData = createIBeaconAdvertiseData(BLE_ADV_SERVICE, major, minor, txPower);
@@ -130,11 +130,11 @@ public class Ble extends CordovaPlugin {
         for (int i = 0, x = 0; i < uuidstr.length; x++) {
             uuidBytes[x] = (byte) ((Integer.parseInt(uuidstr[i++], 16) << 4) | Integer.parseInt(uuidstr[i++], 16));
         }
-        byte[] majorBytes = { (byte) (major >> 8), (byte) (major & 0xff) };
-        byte[] minorBytes = { (byte) (minor >> 8), (byte) (minor & 0xff) };
-        byte[] mPowerBytes = { txPower };
+        byte[] majorBytes = {(byte) (major >> 8), (byte) (major & 0xff)};
+        byte[] minorBytes = {(byte) (minor >> 8), (byte) (minor & 0xff)};
+        byte[] mPowerBytes = {txPower};
         byte[] manufacturerData = new byte[0x17];
-        byte[] flagibeacon = { 0x02, 0x15 };
+        byte[] flagibeacon = {0x02, 0x15};
 
         System.arraycopy(flagibeacon, 0x0, manufacturerData, 0x0, 0x2);
         System.arraycopy(uuidBytes, 0x0, manufacturerData, 0x2, 0x10);
