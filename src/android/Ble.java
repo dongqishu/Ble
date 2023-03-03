@@ -73,11 +73,6 @@ public class Ble extends CordovaPlugin {
                     .setConnectable(true)
                     .build();
 
-//            UUID BLE_ADV_SERVICE = UUID.fromString("1dc250bd-84b1-329f-149d-dd6fd3100f38");
-//            short major = 29229;
-//            short minor = (short) 43102;
-//            byte txPower = (byte) -0x3b;
-
             UUID BLE_ADV_SERVICE = UUID.fromString(args.getString(0));
             short major = (short)Integer.parseInt(args.getString(1));
             short minor = (short)Integer.parseInt(args.getString(2));
@@ -96,11 +91,11 @@ public class Ble extends CordovaPlugin {
 
                 public void onStartFailure(int errorCode) {
                     super.onStartFailure(errorCode);
-                    callbackContext.success("广播失败");
+                    callbackContext.error("广播失败");
                 }
             });
         } catch (SecurityException | JSONException e) {
-            callbackContext.success("广播异常");
+            callbackContext.error("广播异常");
         }
     }
 
